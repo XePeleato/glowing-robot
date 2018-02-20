@@ -2,25 +2,54 @@
 {
     public class Card
     {
-        private float Rent { get; }
-        private float Price { get; }
-        private Player Owner { get; set; } = null;
-        private int Color { get; }
-        private string Name { get; }
+        private float Rent;
+        public float GetRent()
+        {
+            return Rent;
+        }
+
+        private float Price;
+        public float GetPrice()
+        {
+            return Price;
+        }
+
+        private Player Owner;
+        public Player GetOwner()
+        {
+            return Owner;
+        }
+        public void SetOwner(Player value)
+        {
+            Owner = value;
+        }
+
+        private int Color;
+        public int GetColor()
+        {
+            return Color;
+        }
+
+        private string Name;
+        public string GetName()
+        {
+            return Name;
+        }
+
         private int MAX_LOCATIONS = 40;
 
         public Card(string sName, float sPrice, float sRent, int sColor)
         {
-            name = sName;
-            price = sPrice;
-            rent = sRent;
-            color = sColor;
-            owner = null;
+            Name = sName;
+            Price = sPrice;
+            Rent = sRent;
+            Color = sColor;
+            Owner = null;
         }
 
-        bool IsSpecial()
+        public bool IsSpecial()
         {
-            return color > 10;
+            return Color > 10;
         }
         
     }
