@@ -9,7 +9,7 @@ namespace MonopoLib
     {
         public static List<Card> Cards = new List<Card>();
 
-        public static int getRandomNumber()
+        public static int GetRandomNumber()
         {
             var rnd = new Random();
             return rnd.Next(1, 6);
@@ -30,10 +30,13 @@ namespace MonopoLib
                 StreamReader streamReader = new StreamReader(f);
                 line = streamReader.ReadLine();
                 buf = line.Split(' ');
+
                 name = buf[0];
                 price = float.Parse(buf[1]);
                 rent = float.Parse(buf[2]);
                 color = int.Parse(buf[3]);
+
+
                 Cards.Add(new Card(name, price, rent, color));
             }
             f.Close();

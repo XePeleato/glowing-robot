@@ -4,61 +4,56 @@ namespace MonopoLib
 {
     public class Player
     {
-        private float money;
-        private int currentLocation;
-        private string name;
+        private float Money { get; }
+        private int CurrentLocation { get; }
+        private string Name { get; }
         private int START_MONEY = 3000;
-        private int daysInJail;
+        private int DaysInJail { get; }
 
 
         public Player(string n)
         {
-            name = name;
-            money = START_MONEY;
-            currentLocation = 0;
-            daysInJail = 0;
+            Name = n;
+            Money = START_MONEY;
+            CurrentLocation = 0;
+            DaysInJail = -1;
         }
 
-        float getMoney()
+        int ThrowDice()
         {
-            return money;
+            return GameState.GetRandomNumber();
         }
 
-        int getCurrentLocation()
-        {
-            return currentLocation;
-        }
-
-        int throwDice()
-        {
-            return GameState.getRandomNumber();
-        }
-
-        string getName()
-        {
-            return name;
-        }
-
-        void advancePosition(int dice)
+        void AdvancePosition(int dice)
         {
             currentLocation += dice;
             currentLocation %= 40;
         }
 
-        void addMoney(float value)
+        void AddMoney(float value)
         {
             money += value;
         }
 
-        void transferMoney(Player p, float pay)
+        void TransferMoney(Player p, float pay)
         {
-            p.addMoney(pay);
-            addMoney(pay * -1);
+            p.AddMoney(pay);
+            AddMoney(pay * -1);
         }
 
-        void move()
+        void Move()
         {
-            advancePosition(throwDice());
+            AdvancePosition( ThrowDice() );
+        }
+
+        bool HasLost()
+        {
+            return money <= 0;
+        }
+
+        bool IsInJail()
+        {
+            return daysInJail >= 0;
         }
     }
 }
